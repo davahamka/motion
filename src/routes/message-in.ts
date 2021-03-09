@@ -1,6 +1,8 @@
 import { RouteObject } from '../interface/route';
 import { MessageInController } from '../controller/MessageInController';
 import { checkToken } from '../middlewares/auth.middleware';
+import multer = require('multer');
+import { diskStorage } from '../common/upload-file';
 
 type MessangerInRoutesType = Array<RouteObject>;
 
@@ -11,6 +13,7 @@ export const MessangerInRoutes: MessangerInRoutesType = [
     controller: MessageInController,
     action: 'all',
     middleware: checkToken,
+    middleware_2: multer({ storage: diskStorage }),
   },
   {
     method: 'post',

@@ -3,7 +3,7 @@ import { getRepository } from 'typeorm';
 import { format, parseISO } from 'date-fns';
 import { MessageOut } from '../entity/MessageOut';
 
-export class MessageInController {
+export class MessageOutController {
   private messageOutRepository = getRepository(MessageOut);
 
   async all() {
@@ -11,7 +11,7 @@ export class MessageInController {
   }
 
   async one(request: Request) {
-    return this.messageOutRepository.findOne(request.params.id);
+    return this.messageOutRepository.findOne({ message_id: request.params.id });
   }
 
   async create(request: Request) {

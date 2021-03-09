@@ -14,7 +14,7 @@ export class MessageInController {
   }
 
   async one(request: Request) {
-    return this.messageInRepository.findOne(request.params.id);
+    return this.messageInRepository.findOne({ message_id: request.params.id });
   }
 
   async create(request: Request) {

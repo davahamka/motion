@@ -4,4 +4,5 @@ export interface RouteObject {
   controller: Function;
   action: string;
   middleware?: Function;
+  middleware_2?: any;
 }

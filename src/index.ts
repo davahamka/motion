@@ -12,16 +12,18 @@ createConnection()
   .then(async () => {
     const app = express();
     app.use(bodyParser.json());
-
-    app.get('/', (_, res) => {
-      res.send({ data: '😻' });
-    });
+    app.use(bodyParser.urlencoded({ extended: true }));
 
     Routes.forEach((route) => {
       (app as any)[route.method](
         route.route,
         route.middleware
           ? route.middleware
+          : (req: Request, res: Response, next: express.NextFunction) => {
+              next();
+            },
+        route.middleware_2
+          ? route.middleware_2
           : (req: Request, res: Response, next: express.NextFunction) => {
               next();
             },
